@@ -1,15 +1,18 @@
-import {Frame, Navigation} from '@shopify/polaris';
-import {ArrowLeftMinor, HomeMajor, DraftOrdersFilledMajor} from '@shopify/polaris-icons';
+import { Navigation } from '@shopify/polaris';
+import {
+    ArrowLeftMinor,
+    HomeFilledMinor,
+    ImportStoreMajor
+} from '@shopify/polaris-icons';
 import React from 'react';
 
 function NavigationLayout() {
   return (
-    <Frame>
-      <Navigation location="/">
+    <Navigation location="/">
         <Navigation.Section
             items = {[
                 {
-                    url: "/",
+                    url: "/#",
                     label: 'Home',
                     icon: ArrowLeftMinor,
                     selected: window.location.pathname === '/'
@@ -23,19 +26,18 @@ function NavigationLayout() {
                 {
                     url: '/account',
                     label: 'Account',
-                    icon: HomeMajor,
+                    icon: HomeFilledMinor,
                     selected: window.location.pathname === '/account'
                 },
                 {
-                    url: '/address',
+                    url: '/addresses',
                     label: 'Address',
-                    icon: DraftOrdersFilledMajor,
-                    selected: window.location.pathname === '/address'
+                    icon: ImportStoreMajor,
+                    selected: window.location.pathname === '/addresses'
                 }
             ]}  
         />
       </Navigation>
-    </Frame>
   );
 }
 
