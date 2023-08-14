@@ -1,10 +1,16 @@
 import {
   TopBar
 } from '@shopify/polaris';
-import {useState, useCallback} from 'react';
+import {
+  useState,
+  useCallback,
+  useEffect
+} from 'react';
 
 function TopBarLayout() {
 
+  const [username, setUsername] = useState(localStorage.getItem('username') || "QuangBM");
+  const [email, setEmail] = useState(localStorage.getItem('email') || "quangbm@gmail.com");
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -13,11 +19,18 @@ function TopBarLayout() {
     setIsSearchActive(value.length > 0);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('submitForm', () => {
+      setUsername(localStorage.getItem('username') || "QuangBM");
+      setEmail(localStorage.getItem('email') || "quangbm@gmail.com");
+    }, false);
+  }, [])
+
   const userMenuMarkup = (
       <TopBar.UserMenu
-          name="Dharma"
-          detail="Jaded Pixel"
-          initials="D"
+          name={username}
+          detail={email}
+          initials={username.charAt(0).toUpperCase()}
       />
   );
 
